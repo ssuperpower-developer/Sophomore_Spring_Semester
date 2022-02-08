@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Using "if" Syntax</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src=https://unpkg.com/@babel/standalone/babel.min.js></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    let title = "Using If Syntax"
+
+    const cSharp = {
+      title: "C#",
+      description: "WOW This is C# Book"
+    }
+
+    function BookTitle() {
+      return (
+        <div className="row">
+          <div className="col-10">
+            <h1>{title}</h1>
+          </div>
+        </div>
+      )
+    }
+
+    const BookFooter = () => <p>The Book I write</p>
+    const CopyRight = () => {
+      return <p>CopyRight &copy;</p>;
+    }
+
+    // 객체를 사용하는 방법보다 객체의 속성을 끄집어 내는 방법
+    // 그래서 파괴하는 느낌
+    // So We Call this Destructing Assignment
+    function BookCardOther({ title, description }) {
+      return (
+        <div className="container mb-2">
+          <div className="row">
+            <div className="col-12">
+              {title}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-2">
+              {title}
+            </div>
+            <div className="col-10">
+              {description}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    function BookCard({ title, description, price }) {
+      return (
+        <div className="container mb-2">
+          <div className="row">
+            <div className="col-12">
+              {title}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-2">
+              {description}
+              {price}
+              <hr />
+            </div>
+            <div className="col-10">
+              {description}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    function BookList(props) {
+      // 이렇게 조건문 안에서 실행도 가능하다
+      // 여기는 JS 영역
+      // return () 여기 안에서는 JSX문법을 따를 것
+      if (props.sorOrders === "ASC") {
+        return (
+          <>
+            <BookCard title="ASP.net &amp; How to use Core"
+              description="This Books is for How to use the Core" />
+          </ >
+        )
+      } else {
+        return (
+          <>
+            <BookCard title={cSharp.title}
+              description={cSharp.description} price={30000} />
+          </ >
+
+        )
+      }
+    }
+
+    function BookApp() {
+      return (
+        < >
+          <BookTitle />
+          <BookList sorOrders="ASC" />
+          <BookFooter />
+          <CopyRight />
+        </>
+      )
+    }
+
+    ReactDOM.render(
+      <BookApp />,
+      document.getElementById("root")
+    )
+  </script>
+</body>
+
+</html>

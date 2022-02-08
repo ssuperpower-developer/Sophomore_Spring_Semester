@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const p = document.querySelector('p')
+        const input = document.querySelector('input')
+        const button = document.querySelector('button')
+
+        const savedValue = localStorage.getItem('input')
+        // localStorage.input도 가능합니다.
+        if (savedValue) {
+          input.value = savedValue
+          p.textContent = `이전 실행 때의 마지막 값: ${savedValue}`
+        }
+
+        input.addEventListener('keyup', (event) => {
+          const value = event.currentTarget.value
+          localStorage.setItem('input', value)
+          // localStorage.input = value도 가능합니다.
+        })
+
+        button.addEventListener('click', (event) => {
+          localStorage.clear()
+          input.value = ''
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <p></p>
+    <button>지우기</button>
+    <input type="text">
+  </body>
+</html>

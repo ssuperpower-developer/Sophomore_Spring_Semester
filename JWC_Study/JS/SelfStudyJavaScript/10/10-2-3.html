@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <!-- 리액트 사용 준비 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 리액트를 사용하는 코드 입력 -->
+    <script type="text/babel">
+      // 애플리케이션 클래스 생성하기
+      class App extends React.Component {
+        constructor (props) {
+          super(props)
+          this.state = {
+            time: new Date()
+          }
+        }
+
+        componentDidMount () {
+          // 컴포넌트가 화면에 출력되었을 때
+          this.timerId = setInterval(() => {
+            this.setState({
+              time: new Date()
+            })
+          }, 1000)
+        }
+
+        componentWillUnmount () {
+          // 컴포넌트가 화면에서 제거될 때
+          clearInterval(this.timerId)
+        }
+
+        render () {
+          return <ul>
+            <Item value={this.state.time.toLocaleString()} />
+            <Item value={this.state.time.toLocaleString()} />
+            <Item value={this.state.time.toLocaleString()} />
+          </ul>
+        }
+      }
+
+      class Item extends React.Component {
+        constructor (props) {
+          super(props)
+          this.state = {
+            value: props.value
+          }
+        }
+
+        componentDidUpdate (prevProps) {
+          if (prevProps.value !== this.props.value) {
+            this.setState({
+              value: this.props.value
+            })
+          }
+        }
+
+        render () {
+          return <li>{this.state.value}</li>
+        }   
+      }
+  
+      // 출력하기
+      const container = document.getElementById('root')
+      ReactDOM.render(<App />, container)
+    </script>
+  </body>
+</html>

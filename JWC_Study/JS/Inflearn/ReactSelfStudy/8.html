@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React 5 Props</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src=https://unpkg.com/@babel/standalone/babel.min.js></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    const cSharp = {
+      title: "C#",
+      description: "WOW This is C# Book"
+    }
+
+    function BookTitle() {
+      return (
+        <div className="row">
+          <h1>My Book</h1>
+        </div>
+      )
+    }
+
+    const BookFooter = () => <p>The Book I write</p>
+    const CopyRight = () => {
+      return <p>CopyRight &copy;</p>;
+    }
+
+    function BookCard(props) {
+      return (
+        <div className="container mb-2">
+          <div className="row">
+            <div className="col-12">
+              {props.title}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-2">
+              {props.title}
+            </div>
+            <div className="col-10">
+              {props.description}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    function BookList() {
+      return (
+        <>
+          <BookCard title={cSharp.title} description={cSharp.description} />
+          <BookCard title="JWC's C++" description="This is My C++ Book" />
+          <BookCard title="ASP.net &amp; How to use Core"
+            description="This Books is for How to use the Core" />
+        </>
+      )
+    }
+
+    function BookApp() {
+      return (
+        < >
+          <BookTitle />
+          <BookList />
+          <BookFooter />
+          <CopyRight />
+        </>
+      )
+    }
+
+    // Cleanup the codes By Summarized in Final Rendering Codes
+    ReactDOM.render(
+      <BookApp />,
+      document.getElementById("root")
+    )
+  </script>
+</body>
+
+</html>

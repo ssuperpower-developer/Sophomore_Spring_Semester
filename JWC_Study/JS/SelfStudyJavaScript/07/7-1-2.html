@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOMContentLoaded</title>
+    <script>
+      // DOMContentLoaded 이벤트를 연결합니다.
+      document.addEventListener("DOMContentLoaded", () => {
+        const h1 = (text) => `<h1>${text}</h1>`;
+        document.body.innerHTML += h1("DOMContentLoaded 이벤트 발생");
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

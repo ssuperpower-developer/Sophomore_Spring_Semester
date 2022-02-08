@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const divs = document.querySelectorAll('body > div')
+
+        divs.forEach((div, index) => {
+          console.log(div, index)
+          const val = index * 10
+          div.style.height = `10px`
+          div.style.backgroundColor = `rgba(${val}, ${val}, ${val})`
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <!-- div 태그 25개 -->
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Practice</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      crossorigin=""
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin=""
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Components {
+        constructor(props) {
+          super(props);
+          this.state = {
+            checked: false,
+          };
+
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        render() {
+          const textStyle = {
+            color: this.state.checked ? "blue" : "red",
+          };
+
+          return (
+            <div>
+              <input type="checkbox" onClick={this.handleClick} />
+              <h1 style={textStyle}>글자</h1>
+            </div>
+          );
+        }
+
+        handleClick(event) {
+          this.setState({
+            checked: event.target.checked,
+          });
+        }
+      }
+
+      const container = document.getElementById("root");
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>

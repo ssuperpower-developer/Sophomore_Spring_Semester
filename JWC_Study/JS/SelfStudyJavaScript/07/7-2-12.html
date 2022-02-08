@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let status = false;
+
+        const checkbox = document.querySelector("input");
+        checkbox.addEventListener("change", (event) => {
+          status = event.currentTarget.checked;
+        });
+
+        const link = document.querySelector("a");
+        link.addEventListener("click", (event) => {
+          if (!status) {
+            event.preventDefault();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="checkbox" />
+    <span>링크 활성화</span>
+    <br />
+    <a href="http://hanbit.co.kr">한빛미디어</a>
+  </body>
+</html>

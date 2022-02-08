@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOMContentLoaded</title>
+    <script>
+      // HTML 태그를 쉽게 만들 수 있는 콜백 함수를 선언합니다.
+      const h1 = (text) => `<h1>${text}</h1>`;
+    </script>
+    <script>
+      document.body.innerHTML += h1("1번째 script 태그");
+    </script>
+  </head>
+  <body>
+    <script>
+      // First Print
+      document.body.innerHTML += h1("2번째 script 태그");
+    </script>
+    <!-- Second Print -->
+    <h1>1번째 h1 태그</h1>
+    <script>
+      // Third Print
+      document.body.innerHTML += h1("3번째 script 태그");
+    </script>
+    <!-- Fourth Print -->
+    <h1>2번째 h2 태그</h1>
+  </body>
+</html>
+
+<!-- 주석 처리 방법이 다르다 !! -->

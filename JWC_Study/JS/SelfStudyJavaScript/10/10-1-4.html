@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <!-- 리액트 사용 준비 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 리액트를 사용하는 코드 입력 -->
+    <script type="text/babel">
+      // 애플리케이션 클래스 생성하기
+      class App extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1>{this.props.name} 님 안녕하세요!</h1>
+              <img src={this.props.imgUrl} />
+            </div>
+          );
+        }
+      }
+
+      // 출력하기
+      const container = document.getElementById("root");
+      ReactDOM.render(
+        <App name="구름" imgUrl="http://placedog.net/400/200" />,
+        container
+      );
+    </script>
+  </body>
+</html>
