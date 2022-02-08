@@ -1,3 +1,0 @@
-C 언어
-Java 언어
-Python 언어
