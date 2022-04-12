@@ -12,24 +12,24 @@ public:
     height = 0;
   }
 
-  Rectangle(int w, int h) {
+  Rectangle(int w, int h) : width(w), height(h) {
     if (w < 0) {
       width = 0;
       height = h;
-    } else if (h < 0) {
+    }
+
+    if (h < 0) {
       width = w;
       height = 0;
-    } else if (w < 0 && h < 0) {
+    }
+
+    if (w < 0 && h < 0) {
       width = 0;
       height = 0;
-    } else {
-      width = w;
-      height = h;
     }
   }
 
   int area();
-
   int perimeter();
 };
 
