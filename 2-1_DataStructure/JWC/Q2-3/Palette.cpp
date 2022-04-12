@@ -9,7 +9,10 @@ class Polynomial {
 private:
   int time;
   vector<pair<int, int>> v;
-  pair<int, int> searchValue(pair<int, int> p1, vector<pair<int, int>> v2);
+  pair<int, int> search(int idx, vector<pair<int, int>> v);
+  vector<pair<int, int>> returnVector() { return v; }
+  int returnTime() { return time; }
+  int returnHighDegree() { return v[0].first; }
 
 public:
   Polynomial() {}
@@ -17,8 +20,6 @@ public:
   void LoadPolynomial(std::string &filename);
   void PrintPolynomial();
   void add(Polynomial a, Polynomial b);
-  vector<pair<int, int>> returnVector() { return v; }
-  int returnTime() { return time; }
 };
 
 void Polynomial::LoadPolynomial(std::string &filename) {
@@ -46,33 +47,27 @@ void Polynomial::PrintPolynomial() {
   }
 }
 
-pair<int, int> Polynomial::searchValue(pair<int, int> p1,
-                                       vector<pair<int, int>> v2) {
+pair<int, int> Polynomial::search(int idx, vector<pair<int, int>> v) {
   pair<int, int> temp;
 
-  for (int i = 0; i < v2.size(); ++i) {
-    if (v2[i].first == p1.first) {
-      temp.second = p1.second + v2[i].second;
-      if (temp.second == 0) {
-        temp.first = 0;
-        temp.second = 0;
-        return temp;
-      } else {
-        temp.first = p1.first;
-        return temp;
-      }
+  for (int i = 0; i < v.size(); ++i) {
+    if (v[i].first == idx) {
+      temp.first = v[i].first;
+      temp.second = v[i].second;
+      return temp;
     }
   }
 
-  return p1;
+  temp.first = 0;
+  temp.second = 0;
+  return temp;
 }
 
-// 합 연산을 어떻게 진행할 것인지 생각해볼 것
 void Polynomial::add(Polynomial a, Polynomial b) {
   vector<pair<int, int>> v1;
   vector<pair<int, int>> v2;
 
-  if (a.returnTime() > b.returnTime()) {
+  if (a.returnHighDegree() > b.returnHighDegree()) {
     v1 = a.returnVector();
     v2 = b.returnVector();
   } else {
@@ -80,10 +75,30 @@ void Polynomial::add(Polynomial a, Polynomial b) {
     v2 = a.returnVector();
   }
 
-  pair<int, int> temp;
-  for (int i = 0; i < v1.size(); ++i) {
-    temp = searchValue(v1[i], v2);
-    v.push_back(pair<int, int>(temp.first, temp.second));
+  int HighDegree = v1[0].first;
+
+  pair<int, int> p1, p2, temp;
+
+  for (int i = HighDegree; i >= 0; --i) {
+    p1 = search(i, v1);
+    p2 = search(i, v2);
+
+    if (p1.first == p2.first) {
+      temp.first = p1.first;
+      temp.second = p1.second + p2.second;
+    } else {
+      if (p1.first == 0) {
+        temp.first = p2.first;
+        temp.second = p2.second;
+      } else if (p2.first == 0) {
+        temp.first = p1.first;
+        temp.second = p1.second;
+      } else {
+        //
+      }
+    }
+
+    v.push_back(temp);
   }
 
   return;
