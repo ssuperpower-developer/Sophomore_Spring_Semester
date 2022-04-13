@@ -16,6 +16,7 @@ public:
   void PrintPolynomial();
 };
 
+// 파일을 불러오고 정렬하는 과정
 void Polynomial::LoadPolynomial(std::string &filename) {
   ifstream file;
   file.open(filename);
@@ -33,6 +34,7 @@ void Polynomial::LoadPolynomial(std::string &filename) {
   sort(v.rbegin(), v.rend());
 }
 
+// 출력하는 코드!
 void Polynomial::PrintPolynomial() {
   for (int i = 0; i < v.size(); ++i) {
     cout << v[i].second << " " << v[i].first << endl;

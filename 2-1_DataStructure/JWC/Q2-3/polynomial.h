@@ -12,7 +12,10 @@ class Polynomial {
 private:
   int time;
   vector<pair<int, int>> v;
-  pair<int, int> searchValue(pair<int, int> p1, vector<pair<int, int>> v2);
+  pair<int, int> search(int idx, vector<pair<int, int>> v);
+  vector<pair<int, int>> returnVector() { return v; }
+  int returnTime() { return time; }
+  int returnHighDegree() { return v[0].first; }
 
 public:
   Polynomial() {}
@@ -20,8 +23,6 @@ public:
   void LoadPolynomial(std::string &filename);
   void PrintPolynomial();
   void add(Polynomial a, Polynomial b);
-  vector<pair<int, int>> returnVector() { return v; }
-  int returnTime() { return time; }
 };
 
 #endif
