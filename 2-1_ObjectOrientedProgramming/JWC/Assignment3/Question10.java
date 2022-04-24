@@ -2,19 +2,20 @@ import java.util.Random;
 
 public class Question10 {
   public static void main(String[] args) {
-    int[] ary = new int[16];
-    int[] temp = new int[6];
+    int[] temp1 = new int[16];
+    int[] temp2 = new int[6];
+    int[][] ary = new int[4][4];
     Random rn = new Random();
 
     for (int i = 0; i < 16; ++i) {
-      ary[i] = rn.nextInt(10) + 1;
+      temp1[i] = rn.nextInt(10) + 1;
     }
 
     for (int i = 0; i < 6; ++i) {
-      temp[i] = rn.nextInt(16);
+      temp2[i] = rn.nextInt(16);
 
       for (int j = 0; j < i; ++j) {
-        if (temp[i] == temp[j]) {
+        if (temp2[i] == temp2[j]) {
           --i;
           break;
         }
@@ -22,14 +23,22 @@ public class Question10 {
     }
 
     for (int i = 0; i < 6; ++i) {
-      ary[temp[i]] = 0;
+      temp1[temp2[i]] = 0;
     }
 
-    for (int i = 0; i < 16; ++i) {
-      if (i % 4 == 0) {
-        System.out.println(" ");
+    int idx = 0;
+    for (int i = 0; i < 4; ++i) {
+      for (int j = 0; j < 4; ++j) {
+        ary[i][j] = temp1[idx++];
       }
-      System.out.print(ary[i] + " ");
+    }
+
+    for (int i = 0; i < 4; ++i) {
+
+      for (int j = 0; j < 4; ++j) {
+        System.out.print(ary[i][j] + " ");
+      }
+      System.out.println("");
     }
   }
 }
