@@ -8,7 +8,7 @@ public class Num08 {
         int num= scanner.nextInt();
         int a[]=new int[num];
         for (int i=0;i<a.length;i++){
-            a[i]= random.nextInt(num);
+            a[i]= random.nextInt(100)+1;
             for (int j=0;j<i;j++){
                 if (a[j]==a[i]){
                     i--;
