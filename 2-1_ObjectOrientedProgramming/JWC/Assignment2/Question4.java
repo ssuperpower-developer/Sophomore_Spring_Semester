@@ -2,27 +2,18 @@ import java.util.Scanner;
 
 public class Question4 {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    int[] ary = new int[3];
+    System.out.print("Write One Letter >> ");
+    Scanner sc = new Scanner(System.in);
 
-    System.out.print("정수 3개 입력 >> ");
-    for (int i = 0; i < 3; ++i) {
-      ary[i] = scanner.nextInt();
-    }
-    // Selection Sort
-    int max, temp;
-    for (int i = 0; i < 2; ++i) {
-      max = i;
-      for (int j = i + 1; j < 3; ++j) {
-        if (ary[j] < ary[max])
-          max = j;
+    char temp = sc.next().charAt(0);
+
+    for (char i = temp; i >= 'a'; --i) {
+      for (char j = 'a'; j <= i; ++j) {
+        System.out.print(j);
       }
-      temp = ary[i];
-      ary[i] = ary[max];
-      ary[max] = temp;
+      System.out.println("");
     }
-    System.out.print("중간값은 ");
-    System.out.println(ary[1]);
-    scanner.close();
+
+    sc.close();
   }
 }
