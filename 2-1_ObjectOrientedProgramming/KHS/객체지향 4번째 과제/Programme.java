@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Programme {
@@ -22,14 +23,18 @@ public class Programme {
     }
 
     public void Choose(int input) {
-        if (input == 1) Reserve();
-        else if (input == 2) Search();
-        else if (input == 3) Cancel();
-        else if (input == 4) {
-            System.out.println("프로그램 종료");
-            return;
-        } else {
-            System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
+        try {
+            if (input == 1) Reserve();
+            else if (input == 2) Search();
+            else if (input == 3) Cancel();
+            else if (input == 4) {
+                System.out.println("프로그램 종료");
+                return;
+            } else {
+                System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("없는 번호입니다. 재입력바랍니다.");
         }
         Status();
     }
@@ -44,41 +49,58 @@ public class Programme {
     }
 
     void Cancel() {
-        int num=CheckNum();
-        Show(num);
-        String name=CheckName();
-        for (int i=0;i<seat[num-1].length;i++){
-            if(seat[num-1][i].equals(name))seat[num-1][i]="---";
+        boolean ExceptionChecker = true;
+        int num = CheckNum();
+        if (1 <= num && num <= 10) Show(num);
+        else {
+            System.out.println("없는 번호입니다.");
+            return;
         }
+        String name = CheckName();
+        for (int i = 0; i < seat[num - 1].length; i++) {
+            if (seat[num - 1][i].equals(name)) {
+                seat[num - 1][i] = "---";
+                ExceptionChecker = false;
+            }
+        }
+        if (ExceptionChecker) System.out.println("없는 이름입니다. 다시 입력해주세요.");
     }
-    int Show(int a){
-        for (int i=0;i<seat[a-1].length;i++){
-            System.out.print(seat[a-1][i]+" ");
+
+    int Show(int a) throws ArrayIndexOutOfBoundsException {
+
+        for (int i = 0; i < seat[a - 1].length; i++) {
+            System.out.print(seat[a - 1][i] + " ");
         }
         System.out.println("");
-        return a-1;
+        return a - 1;
+
     }
-    void Show(){
+
+    void Show() {
         for (int i = 0; i < seat.length; i++) {
-            for (int j = 0; j < seat[i].length; j++) System.out.print(seat[i][j]+" ");
+            for (int j = 0; j < seat[i].length; j++) System.out.print(seat[i][j] + " ");
             System.out.println(" ");
         }
         System.out.println("조회를 완료하였습니다");
     }
-    void MakeReserve(int show){
-        String tempname=CheckName();
-        int tempnum=CheckNum();
-        seat[show][tempnum-1]=tempname;
+
+    void MakeReserve(int show) {
+        String tempname = CheckName();
+        int tempnum = CheckNum();
+        if (seat[show][tempnum - 1].equals("---")) seat[show][tempnum - 1] = tempname;
+        else System.out.println("이미 예약되었습니다. 재입력해주세요");
         //seat[show][CheckNum(scanner.nextInt())]=CheckName(scanner.next());
     }
-    String CheckName(){
+
+    String CheckName() {
         System.out.println("이름>>");
-        String name= scanner.next();
+        String name = scanner.next();
         return name;
     }
-    int CheckNum(){
+
+    int CheckNum() {
         System.out.println("번호>>");
-        int num= scanner.nextInt();
+        int num = scanner.nextInt();
         return num;
     }
 
