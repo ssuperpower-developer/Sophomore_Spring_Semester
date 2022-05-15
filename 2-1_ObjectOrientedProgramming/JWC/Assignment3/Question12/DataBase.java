@@ -5,19 +5,11 @@ class DataBase {
       { "---", "---", "---", "---", "---", "---", "---", "---", "---", "---" },
       { "---", "---", "---", "---", "---", "---", "---", "---", "---", "---" } };
 
-  static public String returnSeatClass(int seatClassNumber) {
-    if (seatClassNumber == 0)
-      return "S >>> ";
-    else if (seatClassNumber == 1)
-      return "A >>> ";
-    else if (seatClassNumber == 2)
-      return "B >>> ";
-    else
-      return null;
-  }
+  static public String[] seatClassIndex = { "S >>> ", "A >>> ", "B >>> " };
 
-  static public void showSeatStatus(int seatClassNumber) {
-    System.out.print(returnSeatClass(seatClassNumber));
+  static public void showSeatStatus(int seatClassNumber) throws ArrayIndexOutOfBoundsException {
+    System.out.print(seatClassIndex[seatClassNumber]);
+
     for (int i = 0; i < seat[seatClassNumber].length; ++i) {
       System.out.print(seat[seatClassNumber][i] + " ");
     }
@@ -25,11 +17,11 @@ class DataBase {
   }
 
   static public void addUserInfo(String name, int seatClassNumber,
-      int seatNumber) {
+      int seatNumber) throws ArrayIndexOutOfBoundsException {
     seat[seatClassNumber][seatNumber] = name;
   }
 
-  static public void deleteUserInfo(int seatClassNumber, String name) {
+  static public void deleteUserInfo(int seatClassNumber, String name) throws ArrayIndexOutOfBoundsException {
     for (int i = 0; i < seat[seatClassNumber].length; ++i) {
       if (seat[seatClassNumber][i].equals(name)) {
         seat[seatClassNumber][i] = "---";

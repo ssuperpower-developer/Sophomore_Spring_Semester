@@ -8,10 +8,17 @@ public class MakeReservation {
   private String userName;
 
   public void chooseSeatClass() {
-    System.out.print("좌석구분 S(1) A(2) B(3) >> ");
-    seatClass = sc.nextInt();
-    --seatClass;
-    DataBase.showSeatStatus(seatClass);
+    while (true) {
+      try {
+        System.out.print("좌석구분 S(1) A(2) B(3) >> ");
+        seatClass = sc.nextInt();
+        --seatClass;
+        DataBase.showSeatStatus(seatClass);
+        break;
+      } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("잘못된 좌석을 선택하셨습니다. 다시 선택하세요.");
+      }
+    }
   }
 
   public void chooseSeatNumber() {
@@ -20,9 +27,16 @@ public class MakeReservation {
   }
 
   public void makeReservation() {
-    System.out.print("번호 >> ");
-    seatNumber = sc.nextInt();
-    --seatNumber;
-    DataBase.addUserInfo(userName, seatClass, seatNumber);
+    while (true) {
+      try {
+        System.out.print("번호 >> ");
+        seatNumber = sc.nextInt();
+        --seatNumber;
+        DataBase.addUserInfo(userName, seatClass, seatNumber);
+        break;
+      } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("잘못된 좌석을 선택하셨습니다. 다시 선택하세요.");
+      }
+    }
   }
 }
