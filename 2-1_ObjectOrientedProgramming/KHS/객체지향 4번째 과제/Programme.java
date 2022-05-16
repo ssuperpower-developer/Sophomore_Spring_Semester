@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,99 +11,73 @@ public class Programme {
 
     public void Status() {
         try {
-            System.out.println("명품콘서트 홀 예약시스템입니다.");
             System.out.println("예약:1, 조회:2, 취소:3, 끝내기:4 >>");
-            String input = scanner.next();
-            if (input.charAt(0)=='1') Reserve();
-            else if (input.charAt(0) == '2') Search();
-            else if (input.charAt(0) == '3') Cancel();
-            else if (input.charAt(0) == '4') {
-                System.out.println("프로그램 종료");
-                return;
-            } else {
-                System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
-            }
+            Choose(scanner.nextInt());
+        } catch (InputMismatchException a) {
+            System.out.println("입력 오류입니다. 메뉴로 돌아가겠습니다.");
+            scanner.nextLine();//버퍼 비우기용
             Status();
-        }catch (InputMismatchException e){
-            scanner.next();
-            System.out.println("잘못된 입력입니다.");
-            Status();
-        }catch (ArrayIndexOutOfBoundsException e){
-            scanner.next();
-            System.out.println("잘못된 입력입니다.");
+        } catch (ArrayIndexOutOfBoundsException b) {
+            System.out.println("입력 오류입니다. 메뉴로 돌아가겠습니다.");
+            scanner.nextLine();//버퍼 비우기용
             Status();
         }
     }
+
     Programme() {
+        System.out.println("명품콘서트 홀 예약시스템입니다.");
         for (int i = 0; i < seat.length; i++) {
             for (int j = 0; j < seat[i].length; j++) seat[i][j] = "---";
         }
         Status();
     }
 
-    /*public void Choose(int input) {
-        try {
-            if (input == 1) Reserve();
-            else if (input == 2) Search();
-            else if (input == 3) Cancel();
-            else if (input == 4) {
-                System.out.println("프로그램 종료");
-                return;
-            } else {
-                System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("없는 번호입니다. 재입력바랍니다.");
+    public void Choose(int input) {
+        if (input == 1) Reserve();
+        else if (input == 2) Show();
+        else if (input == 3) Cancel();
+        else if (input == 4) {
+            System.out.println("프로그램 종료");
+            return;
+        } else {
+            System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
         }
-        catch (InputMismatchException e){
-            System.out.println("숫자로 입력해주세요. 재입력바랍니다");
-        }finally {
-            Status();
-        }
-    }*/
+        Status();
+    }
 
-    void Reserve() {
-        System.out.println("좌석 구분 S(1), A(2), B(3)");
+    void Reserve() throws InputMismatchException {
+        System.out.print("좌석 구분 S(1), A(2), B(3)>>");
         MakeReserve(Show(scanner.nextInt()));
     }
 
-    void Search() {
-        Show();
-    }
-
     void Cancel() {
-        boolean ExceptionChecker = true;
-        int num = CheckNum();
-        if (1 <= num && num <= 10) Show(num);
-        else {
-            System.out.println("없는 번호입니다.");
-            return;
-        }
+        System.out.print("좌석 구분 S(1), A(2), B(3)>>");
+        int num = scanner.nextInt();
+        Show(num);
         String name = CheckName();
+        boolean NoCancel=true;
         for (int i = 0; i < seat[num - 1].length; i++) {
-            if (seat[num - 1][i].equals(name)) {
-                seat[num - 1][i] = "---";
-                ExceptionChecker = false;
-            }
+            if (seat[num - 1][i].equals(name)) {seat[num - 1][i] = "---";NoCancel=false;}
         }
-        if (ExceptionChecker) System.out.println("없는 이름입니다. 다시 입력해주세요.");
+        if (NoCancel) System.out.println("해당하는 이름을 찾지 못했습니다. 메뉴로 돌아가겠습니다.");
     }
 
-    int Show(int a) throws ArrayIndexOutOfBoundsException {
-
+    int Show(int a) {
+        if (a == 1) System.out.print("S>> ");
+        else if (a == 2) System.out.print("A>> ");
+        else if (a == 3) System.out.print("B>> ");
         for (int i = 0; i < seat[a - 1].length; i++) {
             System.out.print(seat[a - 1][i] + " ");
         }
         System.out.println("");
         return a - 1;
-
     }
 
     void Show() {
         for (int i = 0; i < seat.length; i++) {
-            if(i==0) System.out.print("S>> ");
-            else if(i==1) System.out.print("A>> ");
-            else if(i==2) System.out.print("B>> ");
+            if (i == 0) System.out.print("S>> ");
+            else if (i == 1) System.out.print("A>> ");
+            else if (i == 2) System.out.print("B>> ");
             for (int j = 0; j < seat[i].length; j++) System.out.print(seat[i][j] + " ");
             System.out.println(" ");
         }
@@ -120,15 +93,14 @@ public class Programme {
     }
 
     String CheckName() {
-        System.out.println("이름>>");
+        System.out.print("이름>>");
         String name = scanner.next();
         return name;
     }
 
     int CheckNum() {
-        System.out.println("번호>>");
+        System.out.print("번호>>");
         int num = scanner.nextInt();
         return num;
     }
-
 }
