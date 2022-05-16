@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Programme {
@@ -10,11 +11,30 @@ public class Programme {
     }
 
     public void Status() {
-        System.out.println("명품콘서트 홀 예약시스템입니다.");
-        System.out.println("예약:1, 조회:2, 취소:3, 끝내기:4 >>");
-        Choose(scanner.nextInt());
+        try {
+            System.out.println("명품콘서트 홀 예약시스템입니다.");
+            System.out.println("예약:1, 조회:2, 취소:3, 끝내기:4 >>");
+            String input = scanner.next();
+            if (input.charAt(0)=='1') Reserve();
+            else if (input.charAt(0) == '2') Search();
+            else if (input.charAt(0) == '3') Cancel();
+            else if (input.charAt(0) == '4') {
+                System.out.println("프로그램 종료");
+                return;
+            } else {
+                System.out.println("없는 메뉴입니다. 재입력 바랍니다.");
+            }
+            Status();
+        }catch (InputMismatchException e){
+            scanner.next();
+            System.out.println("잘못된 입력입니다.");
+            Status();
+        }catch (ArrayIndexOutOfBoundsException e){
+            scanner.next();
+            System.out.println("잘못된 입력입니다.");
+            Status();
+        }
     }
-
     Programme() {
         for (int i = 0; i < seat.length; i++) {
             for (int j = 0; j < seat[i].length; j++) seat[i][j] = "---";
@@ -22,7 +42,7 @@ public class Programme {
         Status();
     }
 
-    public void Choose(int input) {
+    /*public void Choose(int input) {
         try {
             if (input == 1) Reserve();
             else if (input == 2) Search();
@@ -36,8 +56,12 @@ public class Programme {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("없는 번호입니다. 재입력바랍니다.");
         }
-        Status();
-    }
+        catch (InputMismatchException e){
+            System.out.println("숫자로 입력해주세요. 재입력바랍니다");
+        }finally {
+            Status();
+        }
+    }*/
 
     void Reserve() {
         System.out.println("좌석 구분 S(1), A(2), B(3)");
@@ -78,6 +102,9 @@ public class Programme {
 
     void Show() {
         for (int i = 0; i < seat.length; i++) {
+            if(i==0) System.out.print("S>> ");
+            else if(i==1) System.out.print("A>> ");
+            else if(i==2) System.out.print("B>> ");
             for (int j = 0; j < seat[i].length; j++) System.out.print(seat[i][j] + " ");
             System.out.println(" ");
         }
