@@ -11,7 +11,7 @@ public class Programme {
 
     public void Status() {
         try {
-            System.out.println("예약:1, 조회:2, 취소:3, 끝내기:4 >>");
+            System.out.print("예약:1, 조회:2, 취소:3, 끝내기:4 >>");
             Choose(scanner.nextInt());
         } catch (InputMismatchException a) {
             System.out.println("입력 오류입니다. 메뉴로 돌아가겠습니다.");
@@ -81,7 +81,7 @@ public class Programme {
             for (int j = 0; j < seat[i].length; j++) System.out.print(seat[i][j] + " ");
             System.out.println(" ");
         }
-        System.out.println("조회를 완료하였습니다");
+        System.out.println("<<조회를 완료하였습니다>>");
     }
 
     void MakeReserve(int show) {

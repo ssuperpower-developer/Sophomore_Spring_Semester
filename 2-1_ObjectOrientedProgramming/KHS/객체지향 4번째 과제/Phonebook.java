@@ -13,7 +13,7 @@ public class Phonebook {
     static public Scanner scanner = new Scanner(System.in);
 
     public int checkNum() {
-        System.out.println("인원수>>");
+        System.out.print("인원수>>");
         Number = scanner.nextInt();
         return Number;
     }
@@ -21,7 +21,7 @@ public class Phonebook {
     public void Push() {
         this.db = new Phone[checkNum()];
         for (int i = 0; i < this.Number; i++) {
-            System.out.println("이름과 전화번호(이름과 번호는 빈 칸 없이 입력)");
+            System.out.print("이름과 전화번호(이름과 번호는 빈 칸 없이 입력)>>");
             String tempName = scanner.next();
             String tempTel = scanner.next();
             db[i] = new Phone(tempName, tempTel);
@@ -33,10 +33,10 @@ public class Phonebook {
         int i = 0;
 
         while (true) {
-            System.out.println("검색할 이름>>");
+            System.out.print("검색할 이름>>");
             String temp = scanner.next();
             if (temp.equals("그만")) {
-                System.out.println("검색을 종료합니다.");
+                System.out.print("검색을 종료합니다.");
                 break;
             }
             for (; i < db.length; i++) {
