@@ -16,9 +16,9 @@ public class Dictionary {
 
 class DicApp {
     public static void main(String[] args) {
+        System.out.println("한영 단어 검색 프로그램입니다");
         while (true) {
-            System.out.println("한영 단어 검색 프로그램입니다");
-            System.out.println("한글 단어 입력>>");
+            System.out.print("한글 단어 입력>>");
             String temp = null;
 
             try {
@@ -27,9 +27,9 @@ class DicApp {
                     System.out.println("프로그램 종료합니다");
                     break;
                 }
-                System.out.println(Dictionary.kor2Eng(temp));
+                System.out.println(temp+"은/는 "+Dictionary.kor2Eng(temp));
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println(temp + "는 저의 사전에 없습니다.");
+                System.out.println(temp + "은/는 저의 사전에 없습니다.");
             }
         }
     }
