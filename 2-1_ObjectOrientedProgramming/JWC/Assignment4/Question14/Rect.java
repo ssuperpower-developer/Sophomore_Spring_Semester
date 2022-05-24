@@ -7,7 +7,7 @@ public class Rect implements Shape {
   }
 
   @Override
-  public void redraw() {
+  public void draw() {
     System.out.println("--- 다시 그립니다. "
         + this.width + "x" + this.height + "에 사각형 입니다.");
   }

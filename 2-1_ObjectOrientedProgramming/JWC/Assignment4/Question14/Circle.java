@@ -7,7 +7,7 @@ public class Circle implements Shape {
   }
 
   @Override
-  public void redraw() {
+  public void draw() {
     System.out.println("--- 다시 그립니다. 반지름이 " 
     + this.radius + "인 원입니다.");
   }
