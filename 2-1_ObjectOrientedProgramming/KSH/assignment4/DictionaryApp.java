@@ -7,7 +7,7 @@ abstract class PairMap{
     abstract int length();
 }
 
-public class Dictionary extends PairMap{
+class Dictionary extends PairMap{
     protected int size;
     Dictionary(int size){
         this.size = size;
@@ -18,7 +18,7 @@ public class Dictionary extends PairMap{
     String get(String key){
         int i = 0;
         for(; i < size; i++){
-            if(keyArray[i].equals(key)){
+            if(keyArray[i] != null && keyArray[i].equals(key)){
                 return valueArray[i];
             }
         }
@@ -27,16 +27,17 @@ public class Dictionary extends PairMap{
     @Override
     void put(String key, String value){
         int i = 0;
+
         for(; i < size; i++){
-            if(keyArray[i].equals(key)){
+            if(keyArray[i] != null && keyArray[i].equals(key)){
                valueArray[i] = value;
             }
         }
         if(i == size){
             for(int k = 0; k < size; k++){
-                if(keyArray[i] != null){
-                    keyArray[i] = key;
-                    valueArray[i] = value;
+                if(keyArray[k] == null){
+                    keyArray[k] = key;
+                    valueArray[k] = value;
                     break;
                 }
             }
@@ -46,7 +47,7 @@ public class Dictionary extends PairMap{
     @Override
     String delete(String key){
         for(int i = 0; i < size; i++){
-            if(keyArray[i].equals(key)){
+            if(keyArray[i] != null && keyArray[i].equals(key)){
                 keyArray[i] = null;
                 valueArray[i] = null;
             }
@@ -57,7 +58,7 @@ public class Dictionary extends PairMap{
     int length(){
         int i = 0;
         for(; i < size; i++){
-            if(keyArray[i] != null){
+            if(keyArray[i] == null){
                 break;
             }
         }
@@ -65,7 +66,7 @@ public class Dictionary extends PairMap{
     }
 }
 
-class DictionaryApp{
+public class DictionaryApp{
     public static void main(String[] args) {
         Dictionary dic = new Dictionary(10);
         dic.put("황기태", "자바");
