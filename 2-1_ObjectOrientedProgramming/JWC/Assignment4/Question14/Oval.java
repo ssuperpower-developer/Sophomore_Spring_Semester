@@ -8,7 +8,7 @@ public class Oval implements Shape {
   }
 
   @Override
-  public void redraw() {
+  public void draw() {
     System.out.println("--- 다시 그립니다. "
         + this.width + "x" + this.height + "에 내접하는 타원입니다.");
   }
