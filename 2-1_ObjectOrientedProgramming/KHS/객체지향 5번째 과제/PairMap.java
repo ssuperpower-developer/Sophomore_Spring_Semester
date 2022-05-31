@@ -29,7 +29,7 @@ class Dictionary extends PairMap {
             }
         }
         if (isNull == false) {
-            return keyArray[i];
+            return valueArray[i];
         } else {
             return null;
         }
@@ -89,9 +89,18 @@ class DictionaryApp {
         dic.put("황기태", "자바");
         dic.put("이재문", "파이썬");
         dic.put("이재문", "C++");
+        dic.put("가","A");
+        dic.put("나","B");
+        dic.put("다","C");
+
         System.out.println("이재문의 값은 " + dic.get("이재문"));
         System.out.println("황기태의 값은 " + dic.get("황기태"));
         dic.delete("황기태");
         System.out.println("황기태의 값은 " + dic.get("황기태"));
+        System.out.println("이재문의 값은 " + dic.get("가"));
+        System.out.println("이재문의 값은 " + dic.get("나"));
+        dic.delete("나");
+        System.out.println("이재문의 값은 " + dic.get("다"));
+
     }
 }
