@@ -1,5 +1,4 @@
 public class Oval implements Shape {
-  private static final double PI = 3.14;
   private int width, height;
 
   Oval(int width, int height) {
