@@ -17,7 +17,7 @@ public class Dictionary extends PairMap {
     keyArray = new String[dictionaryMaxSize];
     valueArray = new String[dictionaryMaxSize];
 
-    settingEmptyDictionary();
+    this.settingEmptyDictionary();
   }
 
   @Override
