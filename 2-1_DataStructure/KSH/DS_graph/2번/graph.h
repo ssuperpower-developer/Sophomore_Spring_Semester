@@ -8,9 +8,10 @@ private:
 	int matrixSize;
 	vector<vector<int>> matrix;
 	vector<int> matrix2;
-	vector<int> dist;
-	vector<int> s;
-	vector<vector<int>> length;
+	//vector<int> dist;
+	//vector<bool> s;
+	int dist[1000];
+	bool s[1000];
 	int x = 0;
 
 public:

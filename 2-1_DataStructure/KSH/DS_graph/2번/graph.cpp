@@ -35,10 +35,13 @@ void Graph::PrintMatrix() {
 }
 
 void Graph::SetShortestPathWeight(const int n, const int v) {
-	for (int i = 0; i < n - 1; i++) {
+	//s.assign(n, false);
+	for (int i = 0; i < n; i++) {
 		s[i] = false;
 		dist[i] = matrix[v][i];
+		//dist.push_back(matrix[v][i]);
 	}
+
 	s[v] = true;
 	dist[v] = 0;
 	for (int i = 0; i < n - 2; i++) {
@@ -54,7 +57,7 @@ void Graph::SetShortestPathWeight(const int n, const int v) {
 
 void Graph::PrintShortestPathWeight(int s) {
 	SetShortestPathWeight(matrixSize, s);
-	for(int i = 0; i < matrixSize - 1; i++)
+	for(int i = 0; i < matrixSize; i++)
 		cout << dist[i] << endl;
 }
 
