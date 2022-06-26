@@ -1,45 +1,25 @@
 import java.util.Scanner;
 
 public class Question6 {
-  public static boolean isThereNum(int[] ary, int target) {
-    int first = 0, end = ary.length - 1, mid;
+  public static void main(String[] args) {
+    int[] unit = { 50000, 10000, 1000, 500, 100, 50, 10, 1 };
 
-    while (first <= end) {
-      mid = (first + end) / 2;
+    System.out.print("금액을 입력하시오 >> ");
+    Scanner sc = new Scanner(System.in);
+    int temp = sc.nextInt();
+    int[] cnt = new int[8];
 
-      if (target == ary[mid])
-        return true;
-      else if (target < ary[mid])
-        end = mid - 1;
-      else if (target > ary[mid])
-        first = mid + 1;
+    for (int i = 0; i < 8; ++i) {
+      cnt[i] = temp / unit[i];
+      temp -= unit[i] * cnt[i];
     }
 
-    return false;
-  }
+    for (int i = 0; i < 8; ++i) {
+      if (cnt[i] == 0)
+        continue;
+      System.out.println(unit[i] + "원 짜리 : " + cnt[i] + "개");
+    }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("1 ~ 99 사이의 정수를 입력하시오 >> ");
-    int num = scanner.nextInt();
-    int a, b, cnt = 0;
-
-    int[] ary = { 3, 6, 9 };
-
-    a = num / 10;
-    b = num % 10;
-
-    if (isThereNum(ary, a))
-      ++cnt;
-
-    if (isThereNum(ary, b))
-      ++cnt;
-
-    if (cnt == 2)
-      System.out.println("박수짝짝");
-    else if (cnt == 1)
-      System.out.println("박수짝");
-
-    scanner.close();
+    sc.close();
   }
 }
