@@ -1,5 +1,5 @@
 // I don't know why include cpp file
-// #include "graph.cpp"
+#include "graph.cpp"
 #include "graph.h"
 #include <iostream>
 

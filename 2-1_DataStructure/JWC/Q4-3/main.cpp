@@ -1,3 +1,4 @@
+#include "graph.cpp"
 #include "graph.h"
 #include <iostream>
 
